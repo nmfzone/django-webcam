@@ -1,4 +1,4 @@
-<p align="center"><img src="https://www.djangoproject.com/s/img/logos/django-logo-positive.png" width="100px" alt="Django Boilerplate"></p>
+<p align="center"><img src="https://www.djangoproject.com/s/img/logos/django-logo-positive.png" width="250px" alt="Django Boilerplate"></p>
 
 # Django Boilerplate
 
