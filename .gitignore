@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+*.py[cod]
+*.log
+*.sql
+.env
+/node_modules
+/public/static

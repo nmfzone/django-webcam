@@ -1,0 +1,31 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="csrf-token" content="{{ csrf_token }}">
+
+  <title>{{ title }} | {{ SETTINGS.APP_NAME }}</title>
+
+  <link rel="stylesheet" href="{% static "css/app.css" %}?v={{ SETTINGS.APP_VERSION }}" type="text/css" />
+  {% block stylesheets %}
+  {% endblock stylesheets %}
+</head>
+<body>
+  <div id="app">
+    {% block main %}
+    {% endblock main %}
+  </div>
+
+  <script type='text/javascript'>
+      window.Django = {
+          csrfToken: '{{ csrf_token }}',
+      }
+    </script>
+  <script type="text/javascript" src="{% static 'js/app.js' %}?v={{ SETTINGS.APP_VERSION }}"></script>
+  {% block javascripts %}
+  {% endblock javascripts %}
+</body>
+</html>
