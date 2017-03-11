@@ -15,7 +15,7 @@ Simple Django Boilerplate for building awesome web applications.
 - Pip
 - Mysql
 - NodeJs (Optional)
-- Yarn (Oprional)
+- Yarn (Optional)
 - Virtualenv (Optional)
 - Pyenv (Optional)
 
