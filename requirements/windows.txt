@@ -1,0 +1,6 @@
+Django==1.10.6
+django-model-utils==2.6.1
+psycopg2==2.6.2
+pycrypto==2.6.1
+mysql-python==1.2.5
+python-dotenv==0.6.0
