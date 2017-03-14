@@ -1,4 +1,4 @@
-{% load staticfiles %}
+{% load fullurl %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,11 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="csrf-token" content="{{ csrf_token }}">
-  <link rel="shortcut icon" href="{% static 'favicon.ico' %}?v={{ SETTINGS.APP_VERSION }}" type="image/x-icon" >
+  <link rel="shortcut icon" href="{% fullstatic 'favicon.ico' %}?v={{ SETTINGS.APP_VERSION }}" type="image/x-icon" >
 
   <title>{{ title }} | {{ SETTINGS.APP_NAME }}</title>
 
-  <link rel="stylesheet" href="{% static 'css/app.css' %}?v={{ SETTINGS.APP_VERSION }}" type="text/css" />
+  <link rel="stylesheet" href="{% fullstatic 'css/app.css' %}?v={{ SETTINGS.APP_VERSION }}" type="text/css" />
   {% block stylesheets %}
   {% endblock stylesheets %}
 </head>
@@ -25,7 +25,7 @@
           csrfToken: '{{ csrf_token }}',
       }
     </script>
-  <script type="text/javascript" src="{% static 'js/app.js' %}?v={{ SETTINGS.APP_VERSION }}"></script>
+  <script type="text/javascript" src="{% fullstatic 'js/app.js' %}?v={{ SETTINGS.APP_VERSION }}"></script>
   {% block javascripts %}
   {% endblock javascripts %}
 </body>
