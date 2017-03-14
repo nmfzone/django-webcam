@@ -13,9 +13,11 @@ APP_VERSION = '1.0.0'
 
 APP_NAME = 'Awesome App'
 
-SECRET_KEY = get_env('APP_KEY')
+APP_URL = get_env('APP_URL', 'http://localhost')
 
-DEBUG = get_env_bool('APP_DEBUG')
+SECRET_KEY = get_env('APP_KEY', 'somerandomstring')
+
+DEBUG = get_env_bool('APP_DEBUG', False)
 
 AUTH_USER_MODEL = 'common.User'
 
@@ -30,6 +32,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'fullurl',
 
     'common.apps.CommonConfig',
     'app.apps.AppConfig',
@@ -75,11 +78,11 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': get_env('DB_NAME'),
-        'USER': get_env('DB_USERNAME'),
-        'PASSWORD': get_env('DB_PASSWORD'),
-        'HOST': get_env('DB_HOST'),
-        'PORT': get_env('DB_PORT'),
+        'NAME': get_env('DB_NAME', 'app'),
+        'USER': get_env('DB_USERNAME', 'root'),
+        'PASSWORD': get_env('DB_PASSWORD', ''),
+        'HOST': get_env('DB_HOST', '127.0.0.1'),
+        'PORT': get_env('DB_PORT', '3306'),
     }
 }
 
@@ -120,10 +123,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = get_env('STATIC_URL', '/static/')
+
+MEDIA_URL = get_env('MEDIA_URL', '/media/')
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'public/static'),
 )
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'public/dist')
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'public/media')
