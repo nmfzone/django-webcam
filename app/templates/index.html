@@ -1,4 +1,5 @@
 {% extends 'layouts/base.html' %}
+{% load fullurl %}
 
 {% block stylesheets %}
   <style>
@@ -9,9 +10,29 @@
       display: flex;
       justify-content: center;
     }
+    .messages h3 {
+      background: #000;
+      width: 100%;
+      padding: 15px 10px;
+      color: #fff;
+      margin-bottom: 40px;
+      font-size: 17px;
+    }
+    .webcam_area {
+      margin-bottom: 50px;
+    }
+    .webcam_area > div > div {
+      border: 1px solid #000;
+    }
+    .webcam_result img {
+      width: 500px;
+    }
+    .img-default {
+      height: 350px;
+      overflow: hidden;
+    }
+    .button_area {
 
-    .title {
-      font-size: 84px;
     }
   </style>
 {% endblock stylesheets %}
@@ -19,9 +40,61 @@
 {% block main %}
   <div class="main">
     <div class="content">
-      <div class="title">
-        Django Boilerplate
+      <div class="row">
+        <div class="col-md-12 text-center">
+          <div class="messages"></div>
+        </div>
+      </div>
+      <div class="row webcam_area">
+        <div class="col-md-6">
+          <div class="webcam_display"></div>
+        </div>
+        <div class="col-md-6">
+          <div class="webcam_result">
+            <div class="img-default">
+              <img src="{% fullstatic 'images/default-thumbnail.jpg' %}" />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row button_area">
+        <div class="col-md-12 text-center">
+          <form>
+        		<input type="button" class="btn btn-primary" value="Configure" onClick="webcam.configure()">
+        		<input type="button" class="btn btn-danger" value="Take" onClick="take_snapshot()">
+        	</form>
+        </div>
       </div>
     </div>
   </div>
 {% endblock main %}
+
+{% block javascripts %}
+  <script type="text/javascript">
+    function take_snapshot() {
+      $('.messages').html('<h3>Uploading...</h3>');
+      webcam.snap();
+    }
+
+    function uploaded(msg) {
+      $('.messages').html('');
+      if (msg.match(/(http\:\/\/\S+)/)) {
+        var image_url = RegExp.$1;
+
+        $('.webcam_result').html(
+          `<img src="${image_url}">`
+        );
+
+        webcam.reset();
+      }
+      else alert("Server Error: " + msg);
+    }
+
+    webcam.set_hook('onComplete', 'uploaded');
+    webcam.set_api_url('upload/');
+    webcam.set_quality(90); // JPEG quality (1 - 100)
+    webcam.set_shutter_sound(true); // play shutter click sound
+
+    $('.webcam_display').html(webcam.get_html(500, 350));
+	</script>
+{% endblock javascripts %}

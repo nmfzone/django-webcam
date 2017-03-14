@@ -3,7 +3,11 @@
 from __future__ import unicode_literals
 
 from django.conf import settings
-from urllib.parse import urljoin
+
+try:
+    from urllib.parse import urljoin
+except ImportError:
+     from urlparse import urljoin
 
 
 class Utils:
