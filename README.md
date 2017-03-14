@@ -22,7 +22,8 @@ Simple Django Boilerplate for building awesome web applications.
 ## How to use
 
 1. Download or clone this repository `git clone git@github.com:nmfzone/django-boilerplate.git`
-2. Install the provided packages `pip install -r requirements/main.txt`
+2. Install the provided packages `pip install -r requirements/main.txt` on OSX and Linux
+   or `pip install -r requirements/windows.txt` on Windows
 3. Duplicate `.env.example` to `.env`
 4. Provide the appropriate value in the `.env`
 5. Migrate the database schema `python manage.py migrate`
